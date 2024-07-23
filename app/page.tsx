@@ -1,4 +1,5 @@
 import Banner from "@/components/banner.client";
+import CardComponent from "@/components/card.server";
 import Link from "next/link";
 
 export default function Home() {
@@ -7,7 +8,7 @@ export default function Home() {
     <main className="mb-56">
       <div className="mx-auto mt-10 max-w-6xl px-4">
         <Banner />
-        <Link href={`/store/${coffeeStoreId}`}>Meme coffee</Link>
+        <CardComponent name="Meme Coffee" imgUrl="/public/static/hero-image.png" href={`/c` } />
       </div>
     </main>
   );
