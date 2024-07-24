@@ -9,9 +9,28 @@ type CardType = {
 
 export default function CardComponent({ name, imgUrl, href }: CardType) {
   return (
-    <Link href={imgUrl}>
-      <h2>{name}</h2>
-      <Image src={imgUrl} width={260} height={160} alt={name} />
+    <Link
+      href={imgUrl}
+      className="m-auto rounded-xl border-gray-400 shadow-2xl"
+    >
+      <div
+        className={`glass min-h-[200px] rounded-xl px-5 pt-1 backdrop:blur-3xl`}
+      >
+        <div className="my-3">
+          <h2 className="w-64 text-ellipsis whitespace-nowrap text-xl font-bold">
+            {name}
+          </h2>
+        </div>
+        <div className="" >
+          <Image
+            className="max-h-[200px] min-h-[200px] rounded-lg shadow-lg"
+            src={imgUrl}
+            width={260}
+            height={160}
+            alt={name}
+          />
+        </div>
+      </div>
     </Link>
   );
 }

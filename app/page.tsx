@@ -8,7 +8,13 @@ export default function Home() {
     <main className="mb-56">
       <div className="mx-auto mt-10 max-w-6xl px-4">
         <Banner />
-        <CardComponent name="Meme Coffee" imgUrl="/public/static/hero-image.png" href={`/c` } />
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-2 lg:grid-cols-3 lg:gap-6">
+          <CardComponent
+            name="Meme Coffee"
+            imgUrl="/static/hero-image.png"
+            href={`/store/${coffeeStoreId}`}
+          />
+        </div>
       </div>
     </main>
   );
