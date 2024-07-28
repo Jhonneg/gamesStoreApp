@@ -1,6 +1,8 @@
 import Banner from "@/components/banner.client";
 import Card from "@/components/card.server";
-import fetchGamesStores from "@/lib/coffee-stores";
+import fetchGamesStores from "@/lib/games-stores";
+import { GamesStoresTypes } from "@/types";
+
 
 async function getData() {
   return await fetchGamesStores();
@@ -17,7 +19,7 @@ export default async function Home() {
             São Paulo stores
           </h2>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-2 lg:grid-cols-3 lg:gap-6">
-            {gamesStores.map((gamesStores) => (
+            {gamesStores.map((gamesStores: GamesStoresTypes) => (
               <Card
                 key={gamesStores.id}
                 name={gamesStores.name}

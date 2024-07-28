@@ -10,9 +10,9 @@ const imbPlesSans = IBM_Plex_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Nextbucks",
-  description: "Find coffee shop near you",
-  icons: "https://img.icons8.com/ios-filled/50/FFFFFF/espresso-cup.png",
+  title: "NextGames",
+  description: "Find games shops near you",
+  icons: "https://img.icons8.com/ios-filled/50/FFFFFF/controller.png",
 };
 
 export default function RootLayout({

@@ -1,5 +1,5 @@
 import React from "react";
 
-export default function CoffeeStore() {
-  return <div>Coffee store page</div>;
+export default function GamesStore() {
+  return <div>Games store page</div>;
 }

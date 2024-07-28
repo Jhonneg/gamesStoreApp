@@ -1,10 +1,4 @@
-type MapboxType = {
-  id: string;
-  properties: {
-    address: string;
-  };
-  text: string;
-};
+import { MapboxType } from "@/types";
 
 function transformGamesData(result: MapboxType) {
   return {
@@ -26,6 +20,22 @@ export default async function fetchGamesStores() {
     return data.features.map((result: MapboxType) =>
       transformGamesData(result)
     );
+  } catch (err) {
+    console.error("Error while fetching Games stores", err);
+  }
+}
+
+export async function fetchGameStore() {
+  try {
+    const response = await fetch(
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/poi.68719547287.json?proximity=ip&access_token=${process.env.MAPBOX_API}`
+    );
+    const data = await response.json();
+
+    const transformedData = data.features.map((result: MapboxType) =>
+      transformGamesData(result)
+    );
+    return transformedData.length > 0 ? transformedData[0] : {};
   } catch (err) {
     console.error("Error while fetching Games stores", err);
   }
