@@ -1,1 +1,3 @@
-Built with nextjs.
+Built with
+
+![icon](https://skillicons.dev/icons?i=next,tailwind)

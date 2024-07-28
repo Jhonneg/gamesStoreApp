@@ -7,7 +7,7 @@ type CardType = {
   href: string;
 };
 
-export default function CardComponent({ name, imgUrl, href }: CardType) {
+export default function Card({ name, imgUrl, href }: CardType) {
   return (
     <Link
       href={imgUrl}
@@ -21,7 +21,7 @@ export default function CardComponent({ name, imgUrl, href }: CardType) {
             {name}
           </h2>
         </div>
-        <div className="" >
+        <div className="">
           <Image
             className="max-h-[200px] min-h-[200px] rounded-lg shadow-lg"
             src={imgUrl}
