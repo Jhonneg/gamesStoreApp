@@ -1,4 +1,4 @@
-export type GamesStoresTypes = {
+export type GameStoreType = {
   id: string;
   name: string;
   imgUrl: string;

@@ -25,10 +25,10 @@ export default async function fetchGamesStores() {
   }
 }
 
-export async function fetchGameStore() {
+export async function fetchGameStore(id: string) {
   try {
     const response = await fetch(
-      `https://api.mapbox.com/geocoding/v5/mapbox.places/poi.68719547287.json?proximity=ip&access_token=${process.env.MAPBOX_API}`
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/${id}.json?proximity=ip&access_token=${process.env.MAPBOX_API}`
     );
     const data = await response.json();
 
