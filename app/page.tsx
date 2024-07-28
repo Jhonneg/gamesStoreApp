@@ -1,9 +1,13 @@
 import Banner from "@/components/banner.client";
 import Card from "@/components/card.server";
-import Link from "next/link";
-import coffesStore from "@/app/data/coffeestores.json";
+import fetchGamesStores from "@/lib/coffee-stores";
 
-export default function Home() {
+async function getData() {
+  return await fetchGamesStores();
+}
+
+export default async function Home() {
+  const gamesStores = await getData();
   return (
     <main className="mb-56">
       <div className="mx-auto mt-10 max-w-6xl px-4">
@@ -13,12 +17,12 @@ export default function Home() {
             São Paulo stores
           </h2>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-2 lg:grid-cols-3 lg:gap-6">
-            {coffesStore.map((coffesStore) => (
+            {gamesStores.map((gamesStores) => (
               <Card
-                key={coffesStore.id}
-                name={coffesStore.name}
-                imgUrl={coffesStore.imgUrl}
-                href={`/store/${coffesStore.id}`}
+                key={gamesStores.id}
+                name={gamesStores.name}
+                imgUrl={gamesStores.imgUrl}
+                href={`/store/${gamesStores.id}`}
               />
             ))}
           </div>
