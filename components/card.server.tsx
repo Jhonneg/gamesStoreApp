@@ -10,7 +10,7 @@ type CardType = {
 export default function Card({ name, imgUrl, href }: CardType) {
   return (
     <Link
-      href={imgUrl}
+      href={href}
       className="m-auto rounded-xl border-gray-400 shadow-2xl"
     >
       <div
@@ -21,13 +21,15 @@ export default function Card({ name, imgUrl, href }: CardType) {
             {name}
           </h2>
         </div>
-        <div className="">
+        <div className="relative w-full h-48">
           <Image
-            className="max-h-[200px] min-h-[200px] rounded-lg shadow-lg"
+            className="rounded-lg shadow-lg"
             src={imgUrl}
-            width={260}
-            height={160}
+            layout="fill"
+            objectFit="cover"
             alt={name}
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQQAAACgCAQAAABA+9rNAAABDElEQVR42u3SAQEAAAgCIF3e9DrQBNhAdwKpCIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIgAIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiCCCIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIiACIgAIiACIiACnwPVB+9h0/AjjwAAAABJRU5ErkJggg=="
+            placeholder="blur"
           />
         </div>
       </div>
