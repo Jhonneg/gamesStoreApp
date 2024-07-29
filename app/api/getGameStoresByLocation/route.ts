@@ -1,6 +1,8 @@
 import fetchGamesStores from "@/lib/games-stores";
 import { NextRequest, NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(request: NextRequest, response: NextResponse) {
   try {
     const searchParams = request.nextUrl.searchParams;
@@ -12,11 +14,8 @@ export async function GET(request: NextRequest, response: NextResponse) {
     }
   } catch (err) {
     console.log("Api error", err);
-    return (
-      NextResponse.json(`Error from api ${err}`),
-      {
-        status: 500,
-      }
-    );
+    return NextResponse.json(`Error from api ${err}`, {
+      status: 500,
+    });
   }
 }
