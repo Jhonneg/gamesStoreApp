@@ -4,7 +4,6 @@ import Banner from "./banner.client";
 import Card from "./card.server";
 import { GameStoreType } from "@/types";
 import { useEffect, useState } from "react";
-import fetchGamesStores from "@/lib/games-stores";
 
 export default function NearbyCoffeeStores() {
   const { handleTrackLocation, isFindingLocation, longLat, locationErrorMsg } =
@@ -37,7 +36,13 @@ export default function NearbyCoffeeStores() {
     <div>
       <Banner
         handleOnClick={handleOnClick}
-        buttonText={isFindingLocation ? "Locating" : "View stores nearby"}
+        buttonText={
+          gameStores.length > 0
+            ? "Stores found"
+            : isFindingLocation
+            ? "Locating"
+            : "View stores nearby"
+        }
       />
       {locationErrorMsg && <p>Error: {locationErrorMsg}</p>}
 

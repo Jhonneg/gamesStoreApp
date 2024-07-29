@@ -53,7 +53,7 @@ export default async function Page(props: {
           {address && (
             <div className="mb-4 flex">
               <Image
-                src="/static/icons/places.svg"
+                src="/static/places.svg"
                 width="24"
                 height="24"
                 alt="places icon"
