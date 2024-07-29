@@ -3,22 +3,28 @@ import { GameStoreType } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 
-async function getData(id: string) {
-  return await fetchGameStore(id);
+async function getData(id: string, queryId: string) {
+  return await fetchGameStore(id, queryId);
 }
 
 export async function generateStaticParams() {
-  const gamesStores = await fetchGamesStores();
+  const SAOPAULO_LONG_LAT = "-73.990593%2C40.740121";
+
+  const gamesStores = await fetchGamesStores(SAOPAULO_LONG_LAT, 6);
   return gamesStores.map((gamesStore: GameStoreType) => ({
     id: gamesStore.id,
   }));
 }
 
-export default async function Page(props: { params: { id: string } }) {
+export default async function Page(props: {
+  params: { id: string };
+  searchParams: { id: string };
+}) {
   const {
     params: { id },
+    searchParams: { id: queryId },
   } = props;
-  const coffeeStore = await getData(id);
+  const coffeeStore = await getData(id, queryId);
   const { name = "", address = "", imgUrl = "" } = coffeeStore;
 
   return (
@@ -32,7 +38,10 @@ export default async function Page(props: { params: { id: string } }) {
             <h1 className="text-4xl">{name}</h1>
           </div>
           <Image
-            src={imgUrl}
+            src={
+              imgUrl ||
+              "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            }
             width={740}
             height={360}
             className="max-h-[420px] min-w-full max-w-full rounded-lg border-2 sepia lg:max-w-[470px] "
