@@ -40,21 +40,24 @@ export default function NearbyCoffeeStores() {
         buttonText={isFindingLocation ? "Locating" : "View stores nearby"}
       />
       {locationErrorMsg && <p>Error: {locationErrorMsg}</p>}
-      <div className="mt-20">
-        <h2 className="mt-8 pb-8 text-4xl font-bold text-white">
-          <p>Game stores located near you</p>
-        </h2>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-2 lg:grid-cols-3 lg:gap-6">
-          {gameStores.map((gamesStores: GameStoreType) => (
-            <Card
-              key={gamesStores.id}
-              name={gamesStores.name}
-              imgUrl={gamesStores.imgUrl}
-              href={`/store/${gamesStores.id}`}
-            />
-          ))}
+
+      {gameStores.length > 0 && (
+        <div className="mt-20">
+          <h2 className="mt-8 pb-8 text-4xl font-bold text-white">
+            <p>Game stores located near you</p>
+          </h2>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-2 lg:grid-cols-3 lg:gap-6">
+            {gameStores.map((gamesStores: GameStoreType) => (
+              <Card
+                key={gamesStores.id}
+                name={gamesStores.name}
+                imgUrl={gamesStores.imgUrl}
+                href={`/store/${gamesStores.id}`}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
