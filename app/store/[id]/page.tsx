@@ -1,4 +1,4 @@
-import { findRecordByFilter } from "@/lib/airtable";
+import { createGameStore } from "@/lib/airtable";
 import fetchGamesStores, { fetchGameStore } from "@/lib/games-stores";
 import { GameStoreType } from "@/types";
 import Image from "next/image";
@@ -6,7 +6,7 @@ import Link from "next/link";
 
 async function getData(id: string, queryId: string) {
   const gameStoreFromMapbox = await fetchGameStore(id, queryId);
-  const createGameStore = findRecordByFilter(id);
+  const _createGameStore = createGameStore(gameStoreFromMapbox, id);
   return gameStoreFromMapbox;
 }
 
