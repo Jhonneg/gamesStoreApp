@@ -1,4 +1,4 @@
-import { Record } from "airtable";
+import { AirtableRecordType } from "@/types";
 
 const Airtable = require("airtable");
 const base = new Airtable({ apiKey: process.env.AIRTABLE_TOKEN }).base(
@@ -7,15 +7,23 @@ const base = new Airtable({ apiKey: process.env.AIRTABLE_TOKEN }).base(
 
 const table = base("games-store");
 
-async function findRecordByFilter(id: string) {
+export async function findRecordByFilter(id: string) {
   const findRecords = await table
     .select({
       filterByFormula: `id=${id}`,
     })
     .firstPage();
 
-  const allRecords = findRecords.map((record) => {
-    return record;
+  return findRecords.map((record: AirtableRecordType) => {
+    return {
+      recordId: record.id,
+      ...record.fields,
+    };
   });
-  console.log({ allRecords });
+}
+
+async function createGameStore(id: string) {
+  const records = await findRecordByFilter(id);
+  if (records.length === 0) {
+  }
 }

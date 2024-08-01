@@ -1,10 +1,13 @@
+import { findRecordByFilter } from "@/lib/airtable";
 import fetchGamesStores, { fetchGameStore } from "@/lib/games-stores";
 import { GameStoreType } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 
 async function getData(id: string, queryId: string) {
-  return await fetchGameStore(id, queryId);
+  const gameStoreFromMapbox = await fetchGameStore(id, queryId);
+  const createGameStore = findRecordByFilter(id);
+  return gameStoreFromMapbox;
 }
 
 export async function generateStaticParams() {
