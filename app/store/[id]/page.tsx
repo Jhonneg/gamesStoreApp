@@ -1,3 +1,4 @@
+import Upvote from "@/components/upvote.client";
 import { createGameStore } from "@/lib/airtable";
 import fetchGamesStores, { fetchGameStore } from "@/lib/games-stores";
 import { GameStoreType } from "@/types";
@@ -64,6 +65,7 @@ export default async function Page(props: {
               <p className="pl-2">{address}</p>
             </div>
           )}
+          <Upvote />
         </div>
       </div>
     </div>
