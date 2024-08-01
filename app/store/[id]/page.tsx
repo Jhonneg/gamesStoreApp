@@ -27,8 +27,8 @@ export default async function Page(props: {
     params: { id },
     searchParams: { id: queryId },
   } = props;
-  const coffeeStore = await getData(id, queryId);
-  const { name = "", address = "", imgUrl = "" } = coffeeStore;
+  const gamesStore = await getData(id, queryId);
+  const { name = "", address = "", imgUrl = "" } = gamesStore;
 
   return (
     <div className="h-full pb-80">

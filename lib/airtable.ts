@@ -27,22 +27,32 @@ export async function findRecordByFilter(id: string) {
 
 export async function createGameStore(gameStore: GameStoreType, id: string) {
   const { name, address, voting = 0, imgUrl } = gameStore;
-  const records = await findRecordByFilter(id);
-
-  if (records.length === 0) {
-    const createRecords = await table.create([
-      {
-        fields: {
-          id,
-          name,
-          address,
-          voting,
-          imgUrl,
-        },
-      },
-    ]);
-    return getMinifiedRecords(createRecords);
-  } else {
-    console.log("Game store exists");
+  
+  try {
+    if (id) {
+      const records = await findRecordByFilter(id);
+      if (records.length === 0) {
+        const createRecords = await table.create([
+          {
+            fields: {
+              id,
+              name,
+              address,
+              voting,
+              imgUrl,
+            },
+          },
+        ]);
+        console.log({ createRecords });
+        return getMinifiedRecords(createRecords);
+      } else {
+        console.log("Game store exists");
+        return records;
+      }
+    } else {
+      console.error("Store id is missing");
+    }
+  } catch (err) {
+    console.error("Error creating or findind a store", err);
   }
 }

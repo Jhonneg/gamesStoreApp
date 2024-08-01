@@ -50,11 +50,10 @@ export async function fetchGameStore(id: string, queryId: string) {
     const data = await response.json();
     const photos = await getListOfGameStorePhotos();
 
-    const transformedData = data.features.map(
-      (result: MapboxType, idx: number) =>
-        transformGamesData(parseInt(queryId), result, photos)
+    const gameStore = data.features.map((result: MapboxType, idx: number) =>
+      transformGamesData(parseInt(queryId), result, photos)
     );
-    return transformedData.length > 0 ? transformedData[0] : {};
+    return gameStore.length > 0 ? gameStore[0] : {};
   } catch (err) {
     console.error("Error while fetching Games stores", err);
   }
