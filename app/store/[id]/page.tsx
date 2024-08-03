@@ -7,8 +7,14 @@ import Link from "next/link";
 
 async function getData(id: string, queryId: string) {
   const gameStoreFromMapbox = await fetchGameStore(id, queryId);
-  const _createGameStore = createGameStore(gameStoreFromMapbox, id);
-  return gameStoreFromMapbox;
+  const _createGameStore = await createGameStore(gameStoreFromMapbox, id);
+  const voting = _createGameStore ? _createGameStore[0].voting : 0;
+  return gameStoreFromMapbox
+    ? {
+        ...gameStoreFromMapbox,
+        voting,
+      }
+    : {};
 }
 
 export async function generateStaticParams() {
@@ -29,7 +35,7 @@ export default async function Page(props: {
     searchParams: { id: queryId },
   } = props;
   const gamesStore = await getData(id, queryId);
-  const { name = "", address = "", imgUrl = "" } = gamesStore;
+  const { name = "", address = "", imgUrl = "", voting } = gamesStore;
 
   return (
     <div className="h-full pb-80">
@@ -41,7 +47,7 @@ export default async function Page(props: {
           <div className="my-4">
             <h1 className="text-4xl">{name}</h1>
           </div>
-          <Image
+          {/* <Image
             src={
               imgUrl ||
               "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -50,6 +56,12 @@ export default async function Page(props: {
             height={360}
             className="max-h-[420px] min-w-full max-w-full rounded-lg border-2 sepia lg:max-w-[470px] "
             alt={"Game Store Image"}
+          /> */}
+          <iframe
+            width={740}
+            height={360}
+            className="max-h-[420px] min-w-full max-w-full rounded-lg border-2 lg:max-w-[470px]"
+            src={`https://www.google.com/maps/embed/v1/place?q=${address}&key=${process.env.GOOGLE_MAP_APIKEY}`}
           />
         </div>
 
@@ -65,7 +77,7 @@ export default async function Page(props: {
               <p className="pl-2">{address}</p>
             </div>
           )}
-          <Upvote />
+          <Upvote voting={voting} />
         </div>
       </div>
     </div>
