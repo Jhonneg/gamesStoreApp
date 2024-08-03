@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useState } from "react";
+import { useState } from "react";
 
 type PositionType = {
   coords: { latitude: number; longitude: number };

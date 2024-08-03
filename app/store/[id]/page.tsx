@@ -4,6 +4,7 @@ import fetchGamesStores, { fetchGameStore } from "@/lib/games-stores";
 import { GameStoreType } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
+import Map from "@/components/mapboxmap.client";
 
 async function getData(id: string, queryId: string) {
   const gameStoreFromMapbox = await fetchGameStore(id, queryId);
@@ -57,12 +58,7 @@ export default async function Page(props: {
             className="max-h-[420px] min-w-full max-w-full rounded-lg border-2 sepia lg:max-w-[470px] "
             alt={"Game Store Image"}
           /> */}
-          <iframe
-            width={740}
-            height={360}
-            className="max-h-[420px] min-w-full max-w-full rounded-lg border-2 lg:max-w-[470px]"
-            src={`https://www.google.com/maps/embed/v1/place?q=${address}&key=${process.env.GOOGLE_MAP_APIKEY}`}
-          />
+          <Map />
         </div>
 
         <div className={`glass mt-12 flex-col rounded-lg p-4 lg:mt-48`}>
