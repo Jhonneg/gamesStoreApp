@@ -2,9 +2,12 @@
 
 import { updateGameStore } from "@/lib/airtable";
 
-export default async function upvoteAction(id: string) {
-  console.log("upvote action");
+type State = {
+  id: string;
+};
 
+export default async function upvoteAction(prevState: State) {
+  const { id } = prevState;
   const data = await updateGameStore(id);
   console.log({ data });
   if (data) {
