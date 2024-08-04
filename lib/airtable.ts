@@ -27,7 +27,7 @@ export async function findRecordByFilter(id: string) {
 
 export async function createGameStore(gameStore: GameStoreType, id: string) {
   const { name, address, voting = 0, imgUrl } = gameStore;
-  
+
   try {
     if (id) {
       const records = await findRecordByFilter(id);
@@ -54,5 +54,33 @@ export async function createGameStore(gameStore: GameStoreType, id: string) {
     }
   } catch (err) {
     console.error("Error creating or findind a store", err);
+  }
+}
+
+export async function updateGameStore(id: string) {
+  try {
+    if (id) {
+      const records = await findRecordByFilter(id);
+      if (records.length !== 0) {
+        const record = records[0];
+        const updatedVoting = record.voting + 1;
+        const updateRecords = await table.update([
+          {
+            id: record.recordId,
+            fields: {
+              voting: updatedVoting,
+            },
+          },
+        ]);
+        console.log({ updateRecords });
+        return getMinifiedRecords(updateRecords);
+      } else {
+        console.log("Game store does not exist");
+      }
+    } else {
+      console.error("Store id is missing");
+    }
+  } catch (err) {
+    console.error("Error updating game store", err);
   }
 }
