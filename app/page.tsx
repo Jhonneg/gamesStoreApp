@@ -4,6 +4,13 @@ import fetchGamesStores from "@/lib/games-stores";
 import { GameStoreType } from "@/types";
 
 async function getData() {
+  if (
+    !process.env.MAPBOX_API ||
+    !process.env.UNSPLASH_ACCESS_KEY ||
+    !process.env.AIRTABLE_TOKEN
+  ) {
+    throw new Error("One of the API keys is missing");
+  }
   const SAOPAULO_LONG_LAT = "-73.990593%2C40.740121";
   return await fetchGamesStores(SAOPAULO_LONG_LAT, 6);
 }

@@ -34,11 +34,13 @@ export default async function fetchGamesStores(longLat: string, limit: number) {
     const data = await response.json();
     const photos = await getListOfGameStorePhotos();
 
-    return data.features.map((result: MapboxType, idx: number) =>
-      transformGamesData(idx, result, photos)
+    return data?.features?.map(
+      (result: MapboxType, idx: number) =>
+        transformGamesData(idx, result, photos) || []
     );
   } catch (err) {
     console.error("Error while fetching Games stores", err);
+    return [];
   }
 }
 
@@ -50,11 +52,13 @@ export async function fetchGameStore(id: string, queryId: string) {
     const data = await response.json();
     const photos = await getListOfGameStorePhotos();
 
-    const gameStore = data.features.map((result: MapboxType, idx: number) =>
-      transformGamesData(parseInt(queryId), result, photos)
-    );
+    const gameStore =
+      data?.features?.map((result: MapboxType, idx: number) =>
+        transformGamesData(parseInt(queryId), result, photos)
+      ) || [];
     return gameStore.length > 0 ? gameStore[0] : {};
   } catch (err) {
     console.error("Error while fetching Games stores", err);
+    return {}
   }
 }
