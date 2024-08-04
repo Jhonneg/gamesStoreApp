@@ -58,7 +58,7 @@ export default async function Page(props: {
             className="max-h-[420px] min-w-full max-w-full rounded-lg border-2 sepia lg:max-w-[470px] "
             alt={"Game Store Image"}
           /> */}
-          <Map />
+          <Map address={address} />
         </div>
 
         <div className={`glass mt-12 flex-col rounded-lg p-4 lg:mt-48`}>

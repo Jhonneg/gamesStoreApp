@@ -39,7 +39,6 @@ export default function useTrackLocation() {
     }
   }
   return {
-    success,
     longLat,
     handleTrackLocation,
     isFindingLocation,
