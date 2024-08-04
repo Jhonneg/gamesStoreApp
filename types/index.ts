@@ -19,3 +19,8 @@ export type AirtableRecordType = {
   recordId: string;
   fields: GameStoreType;
 };
+
+export type ServerParamsType = {
+  params: { id: string };
+  searchParams: { id: string };
+};

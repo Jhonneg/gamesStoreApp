@@ -2,6 +2,8 @@ import Card from "@/components/card.server";
 import NearbyCoffeeStores from "@/components/nearby-coffee-stores.client";
 import fetchGamesStores from "@/lib/games-stores";
 import { GameStoreType } from "@/types";
+import getDomain from "@/utils";
+import { Metadata } from "next";
 
 async function getData() {
   if (
@@ -14,6 +16,15 @@ async function getData() {
   const SAOPAULO_LONG_LAT = "-73.990593%2C40.740121";
   return await fetchGamesStores(SAOPAULO_LONG_LAT, 6);
 }
+export const metadata: Metadata = {
+  title: "NextGames",
+  description: "Allows to find game stores near you",
+  icons: "https://img.icons8.com/ios-filled/50/FFFFFF/controller.png",
+  metadataBase: getDomain(),
+  alternates: {
+    canonical: "/",
+  },
+};
 
 export default async function Home() {
   const gamesStores = await getData();

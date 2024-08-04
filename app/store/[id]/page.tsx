@@ -1,10 +1,12 @@
 import Upvote from "@/components/upvote.client";
 import { createGameStore } from "@/lib/airtable";
 import fetchGamesStores, { fetchGameStore } from "@/lib/games-stores";
-import { GameStoreType } from "@/types";
+import { GameStoreType, ServerParamsType } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import Map from "@/components/mapboxmap.client";
+import getDomain from "@/utils";
+import { Metadata } from "next";
 
 async function getData(id: string, queryId: string) {
   const gameStoreFromMapbox = await fetchGameStore(id, queryId);
@@ -26,6 +28,25 @@ export async function generateStaticParams() {
     id: gamesStore.id,
   }));
 }
+
+export async function generateMetaData({
+  params,
+  searchParams,
+}: ServerParamsType) {
+  const gameStore = await fetchGameStore(params.id, searchParams.id);
+  const { name = "" } = gameStore;
+
+  return {
+    title: name,
+    description: `${name} Game store`,
+    metadataBase: getDomain(),
+    alternates: {
+      canonical: `/game-store/${params.id}`,
+    },
+  };
+}
+
+
 
 export default async function Page(props: {
   params: { id: string };
