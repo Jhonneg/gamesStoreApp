@@ -4,7 +4,7 @@ import fetchGamesStores, { fetchGameStore } from "@/lib/games-stores";
 import { GameStoreType } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
-// import Map from "@/components/mapboxmap.client";
+import Map from "@/components/mapboxmap.client";
 
 async function getData(id: string, queryId: string) {
   const gameStoreFromMapbox = await fetchGameStore(id, queryId);
@@ -48,7 +48,7 @@ export default async function Page(props: {
           <div className="my-4">
             <h1 className="text-4xl">{name}</h1>
           </div>
-          <Image
+          {/* <Image
             src={
               imgUrl ||
               "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -57,8 +57,8 @@ export default async function Page(props: {
             height={360}
             className="max-h-[420px] min-w-full max-w-full rounded-lg border-2 sepia lg:max-w-[470px] "
             alt={"Game Store Image"}
-          />
-          {/* <Map /> */}
+          /> */}
+          <Map />
         </div>
 
         <div className={`glass mt-12 flex-col rounded-lg p-4 lg:mt-48`}>
