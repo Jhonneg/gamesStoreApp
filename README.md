@@ -1,3 +1,6 @@
+
+![](https://skillicons.dev/icons?i=bun,nextjs,react,ts,airtable)
+
 This app allows the user to find games stores near them using geolocation browser API.
 
 This app was built using NextJs framework with React Server Components, TailwindCSS used for styling, Mapbox API used for geolocation data fetching and the geolocator map, Airtable for the upvote count storage.
