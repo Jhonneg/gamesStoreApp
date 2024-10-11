@@ -1,5 +1,5 @@
 
-![](https://skillicons.dev/icons?i=bun,nextjs,react,ts,airtable)
+![](https://skillicons.dev/icons?i=bun,nextjs,react,tailwind,ts,airtable)
 
 This app allows the user to find games stores near them using geolocation browser API.
 
